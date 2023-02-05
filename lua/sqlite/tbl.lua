@@ -152,6 +152,14 @@ function sqlite.tbl:empty()
   end, self)
 end
 
+function sqlite.tbl:eval(statement, params)
+  return h.run(function()
+    if self.db:exists(self.name) then
+      return self.db:eval(statement, params)
+    end
+  end, self)
+end
+
 ---Predicate that returns true if the table exists.
 ---
 ---<pre>
