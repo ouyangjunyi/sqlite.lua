@@ -1,9 +1,9 @@
 local M = {}
-local luv = require "luv"
-local a = require "sqlite.assert"
-local u = require "sqlite.utils"
+local luv = requireSubPlugin "luv"
+local a = requireSubPlugin "sqlite.assert"
+local u = requireSubPlugin "sqlite.utils"
 local fmt = string.format
-local P = require "sqlite.parser"
+local P = requireSubPlugin "sqlite.parser"
 
 ---Get a table schema, or execute a given function to get it
 ---@param tbl_name string

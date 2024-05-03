@@ -1,6 +1,6 @@
-local ffi = require "ffi"
-local bit = require "bit"
-local luv = require "luv"
+local ffi = requireSubPlugin "ffi"
+local bit = requireSubPlugin "bit"
+local luv = requireSubPlugin "luv"
 local M = {}
 
 --- Load clib
