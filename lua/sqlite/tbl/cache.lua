@@ -1,5 +1,5 @@
-local u = requireSubPlugin "sql.utils"
-local luv = requireSubPlugin "luv"
+local u = require "sql.utils"
+local luv = require "luv"
 
 local Cache = {}
 

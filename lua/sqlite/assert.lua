@@ -1,6 +1,6 @@
 local M = {}
-local u = requireSubPlugin "sqlite.utils"
-local clib = requireSubPlugin "sqlite.defs"
+local u = require "sqlite.utils"
+local clib = require "sqlite.defs"
 
 --- Functions for asseting and erroring out :D
 

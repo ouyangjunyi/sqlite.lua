@@ -1,8 +1,8 @@
-local u = requireSubPlugin "sqlite.utils"
-local json = requireSubPlugin "sqlite.json"
+local u = require "sqlite.utils"
+local json = require "sqlite.json"
 local tinsert = table.insert
 local tconcat = table.concat
-local a = requireSubPlugin "sqlite.assert"
+local a = require "sqlite.assert"
 local M = {}
 
 ---@brief [[

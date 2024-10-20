@@ -59,27 +59,16 @@
 ---| '"null"' : when a parent key is deleted/modified, the child key that mapped to the parent key gets set to null.
 ---| '"default"' : similar to "null", except that sets to the column's default value instead of NULL.
 ---| '"cascade"' : propagates the delete or update operation on the parent key to each dependent child key.
---
-function _G.requireSubPlugin(name)
-  local status_ok, plugin = pcall(require, name)
-  if not status_ok then
-    print("sqlitedb error: " .. name)
-    error(" 没有找到sqlite子插件：" .. name)
-    --vim.notify(" 没有找到插件：" .. name)
-    --return nil
-  end
-  return plugin
-end
 
 ---@type sqlite_db
 return setmetatable({}, {
   __index = function(_, key)
-    return requireSubPlugin("sqlite.db")[key]
+    return require("sqlite.db")[key]
   end,
   __newindex = function(_)
     error "sqlite.lua: this shouldn't happen. Mutating sqlite base object is prohibited."
   end,
   __call = function(_, ...)
-    return requireSubPlugin "sqlite.db"(...)
+    return require "sqlite.db"(...)
   end,
 })

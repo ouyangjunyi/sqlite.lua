@@ -3,8 +3,8 @@
 ---@brief ]]
 ---@tag sqlite.db.lua
 
-local u = requireSubPlugin "sqlite.utils"
-local requireSubPlugin = u.require_on_index
+local u = require "sqlite.utils"
+local require = u.require_on_index
 
 local sqlite = {}
 
@@ -17,12 +17,12 @@ sqlite.db = {}
 sqlite.db.__index = sqlite.db
 sqlite.db.__version = "v1.2.2"
 
-local clib = requireSubPlugin "sqlite.defs"
-local s = requireSubPlugin "sqlite.stmt"
-local h = requireSubPlugin "sqlite.helpers"
-local a = requireSubPlugin "sqlite.assert"
-local p = requireSubPlugin "sqlite.parser"
-local tbl = requireSubPlugin "sqlite.tbl"
+local clib = require "sqlite.defs"
+local s = require "sqlite.stmt"
+local h = require "sqlite.helpers"
+local a = require "sqlite.assert"
+local p = require "sqlite.parser"
+local tbl = require "sqlite.tbl"
 
 ---Creates a new sqlite.lua object, without creating a connection to uri.
 ---|sqlite.new| is identical to |sqlite.db:open| but it without opening sqlite db
@@ -85,7 +85,7 @@ end
 ---```lua
 --- local db = sqlite { -- or sqlite_db:extend
 ---   uri = "path/to/db", -- path to db file
----   entries = requireSubPlugin'entries',  -- a pre-made |sqlite_tbl| object.
+---   entries = require'entries',  -- a pre-made |sqlite_tbl| object.
 ---   category = { title = { "text", unique = true, primary = true}  },
 ---   opts = {} or nil -- custom sqlite3 options, see |sqlite_opts|
 ---   --- if opts.keep_open, make connection and keep it open.
@@ -125,7 +125,7 @@ function sqlite.db:extend(conf)
   for tbl_name, schema in pairs(conf) do
     if tbl_name ~= "uri" and tbl_name ~= "opts" and tbl_name ~= "lazy" and u.is_tbl(schema) then
       local name = schema._name and schema._name or tbl_name
-      cls[tbl_name] = schema.set_db and schema or requireSubPlugin("sqlite.tbl").new(name, schema, not lazy and db or nil)
+      cls[tbl_name] = schema.set_db and schema or require("sqlite.tbl").new(name, schema, not lazy and db or nil)
       if not cls[tbl_name].db then
         (cls[tbl_name]):set_db(db)
       end
@@ -658,7 +658,7 @@ function sqlite.db:table(tbl_name, opts)
 end
 
 ---Sqlite functions sugar wrappers. See `sql/strfun`
-sqlite.db.lib = requireSubPlugin "sqlite.strfun"
+sqlite.db.lib = require "sqlite.strfun"
 
 sqlite.db = setmetatable(sqlite.db, {
   __call = sqlite.db.extend,

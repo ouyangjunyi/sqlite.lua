@@ -2,14 +2,14 @@
 ---Abstraction to produce more readable code.
 ---<pre>
 --- ```lua
---- local tbl = requireSubPlugin'sqlite.tbl'
+--- local tbl = require'sqlite.tbl'
 --- ```
 ---</pre>
 ---@brief ]]
 ---@tag sqlite.tbl.lua
 
-local u = requireSubPlugin "sqlite.utils"
-local h = requireSubPlugin "sqlite.helpers"
+local u = require "sqlite.utils"
+local h = require "sqlite.helpers"
 
 local sqlite = {}
 
@@ -26,7 +26,7 @@ sqlite.tbl.__index = sqlite.tbl
 ---`sqlite_tbl:__get` available as a backup. This object can be instantiated
 ---without a {db}, in which case, it requires 'sqlite.tbl:set_db' is called.
 ---
----Common use case might be to define tables in separate files and then requireSubPlugin them in
+---Common use case might be to define tables in separate files and then require them in
 ---file that export db object (TODO: support tbl reuse in different dbs).
 ---
 ---<pre>

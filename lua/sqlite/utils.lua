@@ -1,4 +1,4 @@
-local luv = requireSubPlugin "luv"
+local luv = require "luv"
 local M = {}
 
 M.if_nil = function(a, b)
@@ -240,7 +240,7 @@ M.require_on_exported_call = function(require_path)
   return setmetatable({}, {
     __index = function(_, k)
       return function(...)
-        return requireSubPlugin(require_path)[k](...)
+        return require(require_path)[k](...)
       end
     end,
   })
@@ -249,11 +249,11 @@ end
 M.require_on_index = function(require_path)
   return setmetatable({}, {
     __index = function(_, key)
-      return requireSubPlugin(require_path)[key]
+      return require(require_path)[key]
     end,
 
     __newindex = function(_, key, value)
-      requireSubPlugin(require_path)[key] = value
+      require(require_path)[key] = value
     end,
   })
 end
